@@ -6,7 +6,11 @@ All the description from what i made are in the comments from jump.lua
 
 This video shows what i can archive:
 
-<video src ='https://youtu.be/xVqOOI8MQ-0' widht=500>
+
+https://github.com/metaldogs/otclient/assets/12102397/055e52e4-1c3e-4779-9a1b-b0339a64e904
+
+
+  
 I do not have problems to compile the client, since i already know how to compile the server,
 the only problem i had, was to find the tibia client to copy the assest folder.
 
