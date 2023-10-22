@@ -6,9 +6,7 @@ All the description from what i made are in the comments from jump.lua
 
 This video shows what i can archive:
 
-<video src='[your URL here](https://youtu.be/xVqOOI8MQ-0)' width=500/>
-
-
+<video src ='https://youtu.be/xVqOOI8MQ-0' widht=500>
 I do not have problems to compile the client, since i already know how to compile the server,
 the only problem i had, was to find the tibia client to copy the assest folder.
 
