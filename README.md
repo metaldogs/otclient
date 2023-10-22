@@ -5,7 +5,9 @@ There are the scripts i created: https://github.com/metaldogs/otclient/tree/main
 All the description from what i made are in the comments from jump.lua
 
 This video shows what i can archive:
-https://youtu.be/xVqOOI8MQ-0
+
+<video src='[your URL here](https://youtu.be/xVqOOI8MQ-0)' width=500/>
+
 
 I do not have problems to compile the client, since i already know how to compile the server,
 the only problem i had, was to find the tibia client to copy the assest folder.
