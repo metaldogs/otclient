@@ -1,0 +1,9 @@
+Module
+  name: game_jump
+  description: Make Player Jump!
+  author: Castro, Nick
+  website: https://github.com/edubart/otclient
+  sandboxed: true
+  scripts: [ jump ]
+  @onLoad: init()
+  @onUnload: terminate()

@@ -20,7 +20,7 @@ QuestLabel < Label
 
 QuestLogWindow < MainWindow
   id: questLogWindow
-  !text: tr('Quest Log')
+  !text: 'Journal'
   size: 500 400
   @onEscape: self:destroy()
 

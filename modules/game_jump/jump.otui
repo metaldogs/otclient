@@ -1,0 +1,19 @@
+MainWindow
+  id: jumpWindow
+  !text: 'Jump!'
+  size: 500 400
+  @onEscape: modules.game_jump.toggle()
+
+  Button
+    id: jumpButton
+    !text: 'Jump!'
+    width: 90
+    @onClick: modules.game_jump.jump()
+
+  Button
+    id: closeButton
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    !text: 'Close'
+    width: 90
+    @onClick: modules.game_jump.toggle()

@@ -42,6 +42,7 @@ end
 
 -- public functions
 function init()
+    print("startTopMenuModule")
     connect(g_game, {
         onGameStart = online,
         onGameEnd = offline,
