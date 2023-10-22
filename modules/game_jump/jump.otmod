@@ -2,7 +2,7 @@ Module
   name: game_jump
   description: Make Player Jump!
   author: Castro, Nick
-  website: https://github.com/edubart/otclient
+  website: https://github.com/metaldogs/otclient
   sandboxed: true
   scripts: [ jump ]
   @onLoad: init()

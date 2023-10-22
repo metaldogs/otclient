@@ -8,7 +8,7 @@ MainWindow
     id: jumpButton
     !text: 'Jump!'
     width: 90
-    @onClick: modules.game_jump.jump()
+    @onClick: modules.game_jump.doButtonJump()
 
   Button
     id: closeButton
