@@ -10,7 +10,8 @@ This video shows what i can archive:
 https://github.com/metaldogs/otclient/assets/12102397/055e52e4-1c3e-4779-9a1b-b0339a64e904
 
 
-  
+Link to server i used: https://github.com/metaldogs/forgottenserver
+
 I do not have problems to compile the client, since i already know how to compile the server,
 the only problem i had, was to find the tibia client to copy the assest folder.
 
