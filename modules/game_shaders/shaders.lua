@@ -1,5 +1,5 @@
 HOTKEY = 'Ctrl+Y'
-MAP_SHADERS = {{
+MAP_SHADERS = { {
     name = 'Map - Default',
     frag = nil
 }, {
@@ -47,9 +47,9 @@ MAP_SHADERS = {{
 }, {
     name = 'Map - Noise',
     frag = 'shaders/fragment/noise.frag'
-}}
+} }
 
-OUTFIT_SHADERS = {{
+OUTFIT_SHADERS = { {
     name = 'Outfit - Default',
     frag = nil
 }, {
@@ -65,15 +65,24 @@ OUTFIT_SHADERS = {{
 }, {
     name = 'Outfit - Fragmented',
     frag = 'shaders/fragment/noise.frag'
-}}
+}, {
+    name = 'Outfit - Furious',
+    frag = 'shaders/fragment/furious.frag',
+}, {
+    name = 'Outfit - Fast',
+    frag = 'shaders/fragment/fast.frag',
+    vert = 'shaders/core/vertex/fast.vert'
+}
 
-MOUNT_SHADERS = {{
+}
+
+MOUNT_SHADERS = { {
     name = 'Mount - Default',
     frag = nil
 }, {
     name = 'Mount - Rainbow',
     frag = 'shaders/fragment/party.frag'
-}}
+} }
 
 -- Fix for texture offset drawing, adding walking offsets.
 local dirs = {
@@ -134,6 +143,7 @@ end
 function init()
     connect(g_game, {
         onGameStart = attachShaders
+
     })
 
     g_ui.importStyle('shaders.otui')
@@ -155,6 +165,7 @@ function init()
     local outfitComboBox = shadersPanel:getChildById('outfitComboBox')
     outfitComboBox.onOptionChange = function(combobox, option)
         local player = g_game.getLocalPlayer()
+        print(option)
         if player then
             player:setShader(option)
             local data = combobox:getCurrentOption().data
@@ -173,22 +184,26 @@ function init()
     local registerShader = function(opts, method)
         local fragmentShaderPath = resolvepath(opts.frag)
         local vertexShaderPath = resolvepath(opts.frag ~= nil and opts.vert or 'shaders/core/vertex/default.vert')
+        if opts.vert ~= nil then
+            --print(string.format('Shader name: %s VertexShaderPath:%s', opts.name, vertexShaderPath))
+            g_shaders.createFragmentAndVertexShader(opts.name, opts.vert, opts.frag)
+        else
+            if fragmentShaderPath ~= nil then
+                --  local shader = g_shaders.createShader()
+                g_shaders.createFragmentShader(opts.name, opts.frag)
 
-        if fragmentShaderPath ~= nil then
-            --  local shader = g_shaders.createShader()
-            g_shaders.createFragmentShader(opts.name, opts.frag)
-
-            if opts.tex1 then
-                g_shaders.addMultiTexture(opts.name, opts.tex1)
+                if opts.tex1 then
+                    g_shaders.addMultiTexture(opts.name, opts.tex1)
+                end
+                if opts.tex2 then
+                    g_shaders.addMultiTexture(opts.name, opts.tex2)
+                end
+                -- Setup proper uniforms
+                g_shaders[method](opts.name)
             end
-            if opts.tex2 then
-                g_shaders.addMultiTexture(opts.name, opts.tex2)
-            end
-
-            -- Setup proper uniforms
-            g_shaders[method](opts.name)
         end
     end
+
 
     for _, opts in pairs(MAP_SHADERS) do
         registerShader(opts, 'setupMapShader')
@@ -204,18 +219,31 @@ function init()
         registerShader(opts, 'setupMountShader')
         mountComboBox:addOption(opts.name, opts)
     end
+
+    --ProtocolGame.registerExtendedOpcode(56, onRecvOpcode)
 end
 
 function terminate()
     disconnect(g_game, {
         onGameStart = attachShaders
     })
-
     g_keyboard.unbindKeyDown(HOTKEY)
     shadersPanel:destroy()
     shadersPanel = nil
+    ProtocolGame.unregisterExtendedOpcode(56, true)
 end
 
 function toggle()
     shadersPanel:setVisible(not shadersPanel:isVisible())
+end
+
+function onRecvOpcode(protocol, opcode, packet)
+    local player = g_game.getLocalPlayer()
+    local effect = tonumber(packet)
+    if (effect == 10) then
+        player:setShader('Outfit - Furious')
+        scheduleEvent(function()
+            player:setShader('Default')
+        end, 500)
+    end
 end

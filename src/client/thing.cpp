@@ -98,6 +98,7 @@ void Thing::setShader(const std::string_view name) {
 }
 
 void Thing::attachEffect(const AttachedEffectPtr& obj) {
+    
     if (isCreature()) {
         if (obj->m_thingType && (obj->m_thingType->isCreature() || obj->m_thingType->isMissile()))
             obj->m_direction = static_self_cast<Creature>()->getDirection();
@@ -130,13 +131,16 @@ void Thing::attachEffect(const AttachedEffectPtr& obj) {
             Outfit newOutfit = outfit;
             newOutfit.setTemp(true);
             newOutfit.setCategory(effect->m_thingType->getCategory());
-            if (newOutfit.isCreature())
+            if (newOutfit.isCreature()) {
                 newOutfit.setId(effect->m_thingType->getId());
-            else
+
+            } else {
                 newOutfit.setAuxId(effect->m_thingType->getId());
+            }
+                
 
             creature->setOutfit(newOutfit);
-        }
+        } 
 
         effect->callLuaField("onAttach", self->asLuaObject());
     });

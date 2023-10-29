@@ -6,7 +6,8 @@
         offset{x, y, onTop}, dirOffset[dir]{x, y, onTop},
         onAttach, onDetach
     }
-]] --
+]]
+--
 AttachedEffectManager.register(1, 'Spoke Lighting', 12, ThingCategoryEffect, {
     speed = 0.5,
     onAttach = function(effect, owner)
@@ -22,10 +23,10 @@ AttachedEffectManager.register(2, 'Bat Wings', 307, ThingCategoryCreature, {
     disableWalkAnimation = true,
     shader = 'Outfit - Rainbow',
     dirOffset = {
-        [North] = {0, -10, true},
-        [East] = {5, -5},
-        [South] = {-5, 0},
-        [West] = {-10, -5, true}
+        [North] = { 0, -10, true },
+        [East] = { 5, -5 },
+        [South] = { -5, 0 },
+        [West] = { -10, -5, true }
     }
 })
 
@@ -54,9 +55,18 @@ AttachedEffectManager.register(4, 'Four Angel Light', 0, 0, {
     end
 })
 
-AttachedEffectManager.register(5, 'Transform', 40, ThingCategoryCreature, {
-    transform = true,
-    duration = 5000,
+AttachedEffectManager.register(5, 'Transform', 130, ThingCategoryCreature, {
+    hideOwner = true,
+    duration = 10000,
+    offset = { 50, 45 },
+    --shader = 'Outfit - Furious',
+    opacity = 0.5,
+    dirOffset = {
+        [North] = { 0, -10, true },
+        [East] = { 5, -5 },
+        [South] = { -5, 0 },
+        [West] = { -10, -5, true }
+    },
     onAttach = function(effect, owner)
         local e = Effect.create()
         e:setId(7)
@@ -81,16 +91,41 @@ AttachedEffectManager.register(6, 'Lake Monster', 34, ThingCategoryEffect, {
 })
 
 AttachedEffectManager.register(7, 'Pentagram Aura', '/images/game/effects/pentagram', ThingExternalTexture, {
-    size = {128, 128},
-    offset = {50, 45}
+    size = { 128, 128 },
+    offset = { 50, 45 }
 })
 
 AttachedEffectManager.register(8, 'Ki', '/images/game/effects/ki', ThingExternalTexture, {
-    size = {140, 110},
-    offset = {60, 75, true}
+    size = { 140, 110 },
+    offset = { 60, 75, true }
 })
 
 AttachedEffectManager.register(9, 'Thunder', '/images/game/effects/thunder', ThingExternalTexture, {
     loop = 1,
-    offset = {215, 230}
+    offset = { 215, 230 },
+    duration = 1500
 })
+
+
+function registerNewDashEffect()
+    local _offset = 8
+    local _opacity = 0.7
+    for i = 1, 5, 1 do
+        print(i)
+        AttachedEffectManager.register(9 + i, string.format('Copy%d', i), g_game.getLocalPlayer():getOutfit().type,
+            ThingCategoryCreature, {
+                size = { 140, 110 },
+                dirOffset = {
+                    [North] = { 0, -_offset, true },
+                    [East] = { _offset, 0, false },
+                    [South] = { 0, _offset, false },
+                    [West] = { -_offset, 0, true }
+                },
+                opacity = _opacity,
+                duration = 500
+                --shader = 'Outfit - Fast',
+            })
+        _offset = _offset + 8
+        _opacity = _opacity - 0.1
+    end
+end

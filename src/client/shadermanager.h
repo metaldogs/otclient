@@ -52,7 +52,7 @@ public:
     void createShader(const std::string_view name);
     void createFragmentShader(const std::string_view name, const std::string_view file);
     void createFragmentShaderFromCode(const std::string_view name, const std::string_view code);
-
+    void createFragmentAndVertexShader(const std::string_view name, const std::string_view vertexCode,const std::string_view fragmentCode);
     void addMultiTexture(const std::string_view name, const std::string_view file);
 
     PainterShaderProgramPtr getShader(const std::string_view name);

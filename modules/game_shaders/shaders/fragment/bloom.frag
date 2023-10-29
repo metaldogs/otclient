@@ -11,6 +11,6 @@ void main()
   for (i = -4; i <= 4; i++)
     for (j = -4; j <= 4; j++)
       color += texture2D(u_Tex0, v_TexCoord + vec2(i, j) * 0.003) * 0.008;
-
+  
   gl_FragColor = color;
 }

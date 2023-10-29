@@ -59,6 +59,7 @@ function ProtocolGame.unregisterOpcode(opcode)
 end
 
 function ProtocolGame.registerExtendedOpcode(opcode, callback)
+    
     if not callback or type(callback) ~= 'function' then
         error('Invalid callback.')
     end
