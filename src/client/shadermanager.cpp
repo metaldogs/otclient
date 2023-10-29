@@ -44,6 +44,7 @@ void ShaderManager::createShader(const std::string_view name)
 void ShaderManager::createFragmentShader(const std::string_view name, const std::string_view file)
 {
     const auto& filePath = g_resources.resolvePath(file.data());
+
     g_mainDispatcher.addEvent([&, name = name.data(), filePath] {
         const auto& shader = std::make_shared<PainterShaderProgram>();
         if (!shader)
@@ -59,6 +60,39 @@ void ShaderManager::createFragmentShader(const std::string_view name, const std:
 
         if (!shader->link()) {
             g_logger.error(stdext::format("unable to link shader '%s' from file '%s'", name, path));
+            return;
+        }
+
+        m_shaders[name] = shader;
+    });
+}
+
+void ShaderManager::createFragmentAndVertexShader(const std::string_view name, const std::string_view vertexFile, const std::string_view fragmentFile)
+{
+    const auto& vertexFilePath = g_resources.resolvePath(vertexFile.data());
+    const auto& fragmenFiletPath = g_resources.resolvePath(fragmentFile.data());
+
+
+    g_mainDispatcher.addEvent([&, name = name.data(), vertexFilePath, fragmenFiletPath] {
+        const auto& shader = std::make_shared<PainterShaderProgram>();
+        if (!shader)
+            return;
+
+        const auto& vertexPath = g_resources.guessFilePath(vertexFilePath, "vert");
+        const auto& fragmentPath = g_resources.guessFilePath(fragmenFiletPath, "frag");
+
+
+        if (!shader->addShaderFromSourceFile(ShaderType::VERTEX, vertexPath)) {
+            g_logger.error(stdext::format("unable to load vertex shader '%s' from source file '%s'", name, vertexPath));
+            return;
+        }
+        if (!shader->addShaderFromSourceFile(ShaderType::FRAGMENT, fragmentPath)) {
+            g_logger.error(stdext::format("unable to load fragment shader '%s' from source file '%s'", name, fragmentPath));
+            return;
+        }
+
+        if (!shader->link()) {
+            g_logger.error(stdext::format("unable to link shader '%s'", name));
             return;
         }
 
@@ -105,6 +139,7 @@ void ShaderManager::setupOutfitShader(const std::string_view name)
         shader->bindUniformLocation(OUTFIT_ID_UNIFORM, "u_OutfitId");
     });
 }
+
 
 void ShaderManager::setupMountShader(const std::string_view name)
 {

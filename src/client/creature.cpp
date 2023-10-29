@@ -263,7 +263,7 @@ void Creature::internalDraw(Point dest, LightView* lightView, const Color& color
                     continue;
 
                 datType->draw(dest, 0, m_numPatternX, yPattern, m_numPatternZ, animationPhase, color);
-
+                //AQUI NICOLAS CASTRO
                 if (m_drawOutfitColor && !isMarked && getLayers() > 1) {
                     g_drawPool.setCompositionMode(CompositionMode::MULTIPLY);
                     datType->draw(dest, SpriteMaskYellow, m_numPatternX, yPattern, m_numPatternZ, animationPhase, m_outfit.getHeadColor());
