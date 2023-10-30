@@ -34,12 +34,12 @@ https://github.com/metaldogs/otclient/assets/12102397/4bf95122-20ee-43bd-adcc-f7
 
 Quick access to the scripts I made:
 
-Outline Shader: https://github.com/metaldogs/otclient/blob/816f499930a35165d8f93e3118bf9517e2ab2bea/modules/game_shaders/shaders/fragment/furious.frag
-Attempt to create the vertex dash shader: https://github.com/metaldogs/otclient/blob/816f499930a35165d8f93e3118bf9517e2ab2bea/modules/game_shaders/shaders/core/vertex/fast.vert
-Added the new shaders to the array and created the function that accepts fragment and vertex shaders: https://github.com/metaldogs/otclient/blob/816f499930a35165d8f93e3118bf9517e2ab2bea/modules/game_shaders/shaders.lua
-Creating the dash effect: https://github.com/metaldogs/otclient/blob/816f499930a35165d8f93e3118bf9517e2ab2bea/modules/game_attachedeffects/effects.lua
-Applying shader and effect when receiving a network packet: https://github.com/metaldogs/otclient/blob/816f499930a35165d8f93e3118bf9517e2ab2bea/modules/game_attachedeffects/attachedeffects.lua
-Creation of the action dash and sending the package to the client: https://github.com/metaldogs/forgottenserver/blob/9771c6dcb144e0c85b8859c19cac8d5b422b2e67/data/actions/scripts/others/dash.lua
+- Outline Shader: https://github.com/metaldogs/otclient/blob/816f499930a35165d8f93e3118bf9517e2ab2bea/modules/game_shaders/shaders/fragment/furious.frag
+- Attempt to create the vertex dash shader: https://github.com/metaldogs/otclient/blob/816f499930a35165d8f93e3118bf9517e2ab2bea/modules/game_shaders/shaders/core/vertex/fast.vert
+- Added the new shaders to the array and created the function that accepts fragment and vertex shaders: https://github.com/metaldogs/otclient/blob/816f499930a35165d8f93e3118bf9517e2ab2bea/modules/game_shaders/shaders.lua
+- Creating the dash effect: https://github.com/metaldogs/otclient/blob/816f499930a35165d8f93e3118bf9517e2ab2bea/modules/game_attachedeffects/effects.lua
+- Applying shader and effect when receiving a network packet: https://github.com/metaldogs/otclient/blob/816f499930a35165d8f93e3118bf9517e2ab2bea/modules/game_attachedeffects/attachedeffects.lua
+- Creation of the action dash and sending the package to the client: https://github.com/metaldogs/forgottenserver/blob/9771c6dcb144e0c85b8859c19cac8d5b422b2e67/data/actions/scripts/others/dash.lua
 
 There is still a lot of work to be done, such as applying the outfit color to the dash effect and, most importantly, improving the quality of the code.
 
