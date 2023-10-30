@@ -20,7 +20,7 @@ https://github.com/metaldogs/otclient/assets/12102397/547a619f-2f86-4846-974b-25
 
 
 I'm realy enjoying how things are going, i've had some great progress this past week. To get here, i tryed a lot of ideas that failed, but the paths i took taught me many things like:
-- Opcodes and Networkpackets - Sending packets beteen server and client is realy easy with networkpackets, i realy liked how they are made, but I think I've only scratched the surface of this subject.
+- Opcodes and Networkpackets - Sending packets between server and client is realy easy with networkpackets, i realy liked how they are made, but I think I've only scratched the surface of this subject.
 - Effects - Realy useful tool, but i still have to make some improvement, so when the effect render a outfit, the effect copies the colors and the animation of the main character, or it is already implement, i just dont know how to use.
 - Fragment Shaders - Fragment shaders are easy to use, until you realise that is only applied to the base outfit, and you have to figure out how to mix with addons and the mount.
 - Vertex Shaders - I tried use vertex shader to replicate the dash effect, i even did some modifications to the client to aceppt custom vetex shaders, but it gone wrong when i saw the color layer in the wrong position, as you can see in the video below.
